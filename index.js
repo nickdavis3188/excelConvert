@@ -2,7 +2,7 @@
 const reader = require('xlsx')
 
 // Reading our test file
-const file = reader.readFile('./Book5.xlsx')
+const file = reader.readFile('./FullRank.xlsx')
 
 let data = []
 
@@ -17,9 +17,10 @@ for(let i = 0; i < sheets.length; i++)
     })
 }
 
-console.log(data);
+
+
 // Reading our test file
-const file2 = reader.readFile('./Service.xlsx')
+const file2 = reader.readFile('./Rank.xlsx')
 
 let data2 = []
 
@@ -34,20 +35,20 @@ for(let i = 0; i < sheets2.length; i++)
     })
 }
 
-
-// Printing data
+// console.log(data2);
+// // Printing data
 let retData = [];
 for (let index = 0; index < data2.length; index++) {
     // const element = data2[index];
     for (let v = 0; v < data.length; v++) {
-        if (data[v].ServiceName == data2[index].Service) {
-            retData.push({"serviceName":data2[index].Service,"serviceId":data[v].ServiceId})
+        if (data[v].RANK == data2[index].RANK) {
+            retData.push({"RANK":data2[index].RANK,"ID":data[v].ID})
         }
     }
     
 }
 
-
+// console.log(retData);
 
 const convertToExcel = ()=>{
     
@@ -58,7 +59,7 @@ const convertToExcel = ()=>{
     reader.write(workbook,{bookType:'xlsx',type:'buffer'});
     //generate binary
     reader.write(workbook,{bookType:'xlsx',type:'binary'});
-    reader.writeFile(workbook,"mainData.xlsx")
+    reader.writeFile(workbook,"resultData.xlsx")
 
 }
 convertToExcel();
